@@ -30,40 +30,24 @@ SERVER_MQTT_SERVER = "iothub-single-949df24b-9261-4be0-8978-d47e432bf25d-001.eas
 SERVER_MQTT_TOPIC_HEAD = "/v1/device/"
 SERVER_MQTT_TOPIC_END = "/rawdata"
 SERVER_MQTT_PORT = 1883
-SERVER_USER_NAME = ""
-SERVER_USER_PWD = ""
+SERVER_USER_NAME = "e0f25769-8431-476a-a1dd-1176c1b6db94:c82f37e5-640d-4bc7-a923-7db90be3abf9"
+SERVER_USER_PWD = "zoiXypQQKxuzz5rlvAel6q59b"
 
 SERVER_MQTT_TOPIC_DL303 = "d9e527d26c1ea764fb87bdd236537ebm"
-SERVER_DEVICE_ID_DL303 = "e0f25769-8431-476a-a1dd-1176c1b6db94%3Afe5be3c0-f764-45d7-8136-69567e023636:K0mmitKzcepJsRZgEr3Y7Odoa"
-SERVER_DEVICE_KEY_DL303 = "K0mmitKzcepJsRZgEr3Y7Odoa"
 
 SERVER_MQTT_TOPIC_ET7044 = "38b1970c53e946cde9ca12efed6dc3bp"
-SERVER_DEVICE_ID_ET7044 = "e0f25769-8431-476a-a1dd-1176c1b6db94%3Aff99b9d2-0044-49fc-9d4f-aa7b6ff16aca:Ut2Qo3astKWItJm6Yq8VvAt6Z"
-SERVER_DEVICE_KEY_ET7044 = "Ut2Qo3astKWItJm6Yq8VvAt6Z"
 
 SERVER_MQTT_TOPIC_POWER_METER = "13bed6eeecf7c893a0f5acc9241c14o5"
-SERVER_DEVICE_ID_POWER_METER = "e0f25769-8431-476a-a1dd-1176c1b6db94%3A1a82f3c5-5bd0-4abe-ba34-c69507b366ca:UNPg8vzSipCzVO9tNK9WV9aJi"
-SERVER_DEVICE_KEY_POWER_METER = "UNPg8vzSipCzVO9tNK9WV9aJi"
 
 SERVER_MQTT_TOPIC_UPS_A = "dffafb9802d50581783ce99bcad7bez0"
-SERVER_DEVICE_ID_UPS_A = "e0f25769-8431-476a-a1dd-1176c1b6db94%3Ac82f37e5-640d-4bc7-a923-7db90be3abf9:zoiXypQQKxuzz5rlvAel6q59b"
-SERVER_DEVICE_KEY_UPS_A = "zoiXypQQKxuzz5rlvAel6q59b"
 
 SERVER_MQTT_TOPIC_UPS_B = "4497a4ad26784de5f53fc8a31d201azo"
-SERVER_DEVICE_ID_UPS_B = "e0f25769-8431-476a-a1dd-1176c1b6db94%3A47cd478e-369c-41bf-bf69-71edaee67c07:sty8S4e7iLfNPLYzbux1OXtPV"
-SERVER_DEVICE_KEY_UPS_B = "sty8S4e7iLfNPLYzbux1OXtPV"
 
-SERVER_MQTT_TOPIC_AIR_CONDITION = "dffafb9802d50581783ce99bcad7bez0"
-SERVER_DEVICE_ID_AIR_CONDITION = "e0f25769-8431-476a-a1dd-1176c1b6db94%3A1a82f3c5-5bd0-4abe-ba34-c69507b366ca:UNPg8vzSipCzVO9tNK9WV9aJi"
-SERVER_DEVICE_KEY_AIR_CONDITION = "UNPg8vzSipCzVO9tNK9WV9aJi"
+SERVER_MQTT_TOPIC_AIR_CONDITION = "39dddf22d9507e03c86d4ac0d79ce4u9"
 
 SERVER_MQTT_TOPIC_UPS_ROUTE_A = "bed258e5ff169da3d037dd1de66400kx"
-SERVER_DEVICE_ID_UPS_ROUTE_A = "e0f25769-8431-476a-a1dd-1176c1b6db94:73cbd38d-9fbc-4c99-b7c9-5842470dce97"
-SERVER_DEVICE_KEY_UPS_ROUTE_A = "pJ8QSh6x4Byyw4zZql7LLd7E5"
 
 SERVER_MQTT_TOPIC_UPS_ROUTE_B = "a9a39645df7349fddc8959bea193462b"
-SERVER_DEVICE_ID_UPS_ROUTE_B = "e0f25769-8431-476a-a1dd-1176c1b6db94%3A53b094e5-66d1-4f05-aca6-2993867d2579:EbitDHEL7tyt5g3SvQIqwXQrz"
-SERVER_DEVICE_KEY_UPS_ROUTE_B = "EbitDHEL7tyt5g3SvQIqwXQrz"
 
 
 def on_message(client, userdata, message):
@@ -83,11 +67,9 @@ def on_message(client, userdata, message):
     print('------------------------------------------------------')
     print("message received -->" ,message.payload.decode('utf-8'))
     print("message topic =",message.topic)
-    '''
+    
     if (message.topic == CLIENT_MQTT_TOPIC_UPS_ROUTE_B):
-        SERVER_TOPIC = SERVER_MQTT_TOPIC_HEAD + SERVER_DEVICE_ID_UPS_ROUTE_B + SERVER_MQTT_TOPIC_END
-        SERVER_USER_NAME = SERVER_DEVICE_KEY_UPS_ROUTE_B
-        SERVER_USER_PWD = SERVER_DEVICE_KEY_UPS_ROUTE_B
+        SERVER_TOPIC = SERVER_MQTT_TOPIC_UPS_ROUTE_B
         print(SERVER_TOPIC)
         data = json.loads(message.payload)
         IN_V110_A = str(data['IN_V110_A']) + "A"
@@ -121,11 +103,9 @@ def on_message(client, userdata, message):
         SERVER_PUB_COMMAND = '[{"id":"OUT_V110_E", "value":["' + OUT_V110_E + '"], "time":"' + year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "." + micro_second + 'Z"}]'
         mqtt_pub.publish(SERVER_TOPIC, SERVER_PUB_COMMAND)
         print("------------------------------------------------")
-    '''
+    
     if (message.topic == CLIENT_MQTT_TOPIC_UPS_ROUTE_A):
         SERVER_TOPIC = SERVER_MQTT_TOPIC_UPS_ROUTE_A
-        SERVER_USER_NAME = SERVER_DEVICE_ID_UPS_ROUTE_A
-        SERVER_USER_PWD = SERVER_DEVICE_KEY_UPS_ROUTE_A
         print(SERVER_TOPIC)
         data = json.loads(message.payload)
         IN_V110_A = str(data['IN_V110_A']) + "A"
@@ -159,16 +139,14 @@ def on_message(client, userdata, message):
         SERVER_PUB_COMMAND = '{"id":"OUT_V110_E", "value":["' + OUT_V110_E + '"], "time":"' + year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "." + micro_second + 'Z"}'
         mqtt_pub.publish(SERVER_TOPIC, SERVER_PUB_COMMAND)
         print("------------------------------------------------")
-    '''
+    
     if (message.topic == CLIENT_MQTT_TOPIC_AIR_CONDITION):
-        SERVER_TOPIC = SERVER_MQTT_TOPIC_HEAD + SERVER_DEVICE_ID_AIR_CONDITION + SERVER_MQTT_TOPIC_END
-        SERVER_USER_NAME = SERVER_DEVICE_KEY_AIR_CONDITION
-        SERVER_USER_PWD = SERVER_DEVICE_KEY_AIR_CONDITION
+        SERVER_TOPIC = SERVER_MQTT_TOPIC_AIR_CONDITION
         print(SERVER_TOPIC)
         data = json.loads(message.payload)
         temp = str(data['Temperature']) + "℃"
         humi = str(data['Humidity']) + "%"
-        mqtt_pub = mqtt.Client("CHT-IOT")
+        mqtt_pub = mqtt.Client("Wise-PaaS")
         mqtt_pub.username_pw_set(SERVER_USER_NAME, password=SERVER_USER_PWD)
         mqtt_pub.connect(SERVER_MQTT_SERVER, SERVER_MQTT_PORT)
         SERVER_PUB_COMMAND = '[{"id":"Humi", "value":["' + humi + '"], "time":"' + year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "." + micro_second + 'Z"}]'
@@ -182,15 +160,13 @@ def on_message(client, userdata, message):
         print("------------------------------------------------")
 
     if (message.topic == CLIENT_MQTT_TOPIC_POWER_METER):
-        SERVER_TOPIC = SERVER_MQTT_TOPIC_HEAD + SERVER_DEVICE_ID_POWER_METER + SERVER_MQTT_TOPIC_END
-        SERVER_USER_NAME = SERVER_DEVICE_KEY_POWER_METER
-        SERVER_USER_PWD = SERVER_DEVICE_KEY_POWER_METER
+        SERVER_TOPIC = SERVER_MQTT_TOPIC_POWER_METER
         print(SERVER_TOPIC)
         data = json.loads(message.payload)
         temp = str(data['Temperature'])
         humi = str(data['Humidity'])
         current = str(data['currents'])
-        mqtt_pub = mqtt.Client("CHT-IOT")
+        mqtt_pub = mqtt.Client("Wise-PaaS")
         mqtt_pub.username_pw_set(SERVER_USER_NAME, password=SERVER_USER_PWD)
         mqtt_pub.connect(SERVER_MQTT_SERVER, SERVER_MQTT_PORT)
         SERVER_PUB_COMMAND = '[{"id":"Current", "value":["' + current + '"], "time":"' + year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "."+ micro_second + 'Z"}, \
@@ -200,11 +176,8 @@ def on_message(client, userdata, message):
         mqtt_pub.publish(SERVER_TOPIC, SERVER_PUB_COMMAND)
         print("------------------------------------------------")
         
-
     if (message.topic == CLIENT_MQTT_TOPIC_UPS_MONITOR):
-        SERVER_TOPIC = SERVER_MQTT_TOPIC_HEAD + SERVER_DEVICE_ID_UPS_A + SERVER_MQTT_TOPIC_END
-        SERVER_USER_NAME = SERVER_DEVICE_KEY_UPS_A
-        SERVER_USER_PWD = SERVER_DEVICE_KEY_UPS_A
+        SERVER_TOPIC = SERVER_MQTT_TOPIC_UPS_A
         print(SERVER_TOPIC)
         data = json.loads(message.payload)
         inputStatus = data['input_A']
@@ -222,7 +195,8 @@ def on_message(client, userdata, message):
         batteryTemp = battery_status['batteryTemp_A']
         batteryVolt = battery_status['batteryVolt_A'] + "V"
         batteryRemain_Percent = battery_status['batteryRemain_Percent_A'] + "%"
-        mqtt_pub = mqtt.Client("CHT-IOT")
+
+        mqtt_pub = mqtt.Client("Wise-PaaS")
         mqtt_pub.username_pw_set(SERVER_USER_NAME, password=SERVER_USER_PWD)
         mqtt_pub.connect(SERVER_MQTT_SERVER, SERVER_MQTT_PORT)
         SERVER_PUB_COMMAND = '[{"id":"batteryRemain_Percent_A", "value":["' + batteryRemain_Percent + '"], "time":"' + year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "." + micro_second + 'Z"}]'
@@ -262,9 +236,7 @@ def on_message(client, userdata, message):
         mqtt_pub.publish(SERVER_TOPIC, SERVER_PUB_COMMAND)
         print("------------------------------------------------")
 
-        SERVER_TOPIC = SERVER_MQTT_TOPIC_HEAD + SERVER_DEVICE_ID_UPS_B + SERVER_MQTT_TOPIC_END
-        SERVER_USER_NAME = SERVER_DEVICE_KEY_UPS_B
-        SERVER_USER_PWD = SERVER_DEVICE_KEY_UPS_B
+        SERVER_TOPIC = SERVER_DEVICE_ID_UPS_B
         print(SERVER_TOPIC)
         inputStatus = data['input_B']
         inputLine = inputStatus['inputLine_B'] + "線路"
@@ -282,7 +254,7 @@ def on_message(client, userdata, message):
         batteryVolt = battery_status['batteryVolt_B'] + "V"
         batteryRemain_Percent = battery_status['batteryRemain_Percent_B'] + "%"
 
-        mqtt_pub = mqtt.Client("CHT-IOT")
+        mqtt_pub = mqtt.Client("Wise-PaaS")
         mqtt_pub.username_pw_set(SERVER_USER_NAME, password=SERVER_USER_PWD)
         mqtt_pub.connect(SERVER_MQTT_SERVER, SERVER_MQTT_PORT)
         SERVER_PUB_COMMAND = '[{"id":"batteryRemain_Percent_B", "value":["' + batteryRemain_Percent + '"], "time":"' + year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "." + micro_second + 'Z"}]'
@@ -321,11 +293,9 @@ def on_message(client, userdata, message):
         SERVER_PUB_COMMAND = '[{"id":"outputWatt_B", "value":["' + outputWatt + '"], "time":"' + year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "." + micro_second + 'Z"}]'
         mqtt_pub.publish(SERVER_TOPIC, SERVER_PUB_COMMAND)
         print("------------------------------------------------")
-    '''
+    
     if (message.topic == CLIENT_MQTT_TOPIC_DL303_CO2):
         SERVER_TOPIC = SERVER_MQTT_TOPIC_DL303
-        SERVER_USER_NAME = SERVER_DEVICE_ID_DL303
-        SERVER_USER_PWD = SERVER_DEVICE_KEY_DL303
         print(SERVER_TOPIC)
         mqtt_pub = mqtt.Client("Wise-PaaS")
         mqtt_pub.username_pw_set(SERVER_USER_NAME, password=SERVER_USER_PWD)
@@ -334,13 +304,11 @@ def on_message(client, userdata, message):
         print(SERVER_PUB_COMMAND)
         mqtt_pub.publish(SERVER_TOPIC, SERVER_PUB_COMMAND)
         print("------------------------------------------------")
-    '''
+    
     if (message.topic == CLIENT_MQTT_TOPIC_DL303_DC):
-        SERVER_TOPIC = SERVER_MQTT_TOPIC_HEAD + SERVER_DEVICE_ID_DL303 + SERVER_MQTT_TOPIC_END
-        SERVER_USER_NAME = SERVER_DEVICE_KEY_DL303
-        SERVER_USER_PWD = SERVER_DEVICE_KEY_DL303
+        SERVER_TOPIC = SERVER_MQTT_TOPIC_DL303
         print(SERVER_TOPIC)
-        mqtt_pub = mqtt.Client("CHT-IOT")
+        mqtt_pub = mqtt.Client("Wise-PaaS")
         mqtt_pub.username_pw_set(SERVER_USER_NAME, password=SERVER_USER_PWD)
         mqtt_pub.connect(SERVER_MQTT_SERVER, SERVER_MQTT_PORT)
         SERVER_PUB_COMMAND = '[{"id":"dewp", "value":["' + str(message.payload.decode('utf-8'))  + '"], "time":"' + year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "." + micro_second + 'Z"}]'
@@ -349,11 +317,9 @@ def on_message(client, userdata, message):
         print("------------------------------------------------")
 
     if (message.topic == CLIENT_MQTT_TOPIC_DL303_RH):
-        SERVER_TOPIC = SERVER_MQTT_TOPIC_HEAD + SERVER_DEVICE_ID_DL303 + SERVER_MQTT_TOPIC_END
-        SERVER_USER_NAME = SERVER_DEVICE_KEY_DL303
-        SERVER_USER_PWD = SERVER_DEVICE_KEY_DL303
+        SERVER_TOPIC = SERVER_MQTT_TOPIC_DL303
         print(SERVER_TOPIC)
-        mqtt_pub = mqtt.Client("CHT-IOT")
+        mqtt_pub = mqtt.Client("Wise-PaaS")
         mqtt_pub.username_pw_set(SERVER_USER_NAME, password=SERVER_USER_PWD)
         mqtt_pub.connect(SERVER_MQTT_SERVER, SERVER_MQTT_PORT)
         SERVER_PUB_COMMAND = '[{"id":"humi", "value":["' + str(message.payload.decode('utf-8'))  + '"], "time":"' + year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "." + micro_second + 'Z"}]'
@@ -362,11 +328,9 @@ def on_message(client, userdata, message):
         print("------------------------------------------------")
 
     if (message.topic == CLIENT_MQTT_TOPIC_DL303_TC):
-        SERVER_TOPIC = SERVER_MQTT_TOPIC_HEAD + SERVER_DEVICE_ID_DL303 + SERVER_MQTT_TOPIC_END
-        SERVER_USER_NAME = SERVER_DEVICE_KEY_DL303
-        SERVER_USER_PWD = SERVER_DEVICE_KEY_DL303
+        SERVER_TOPIC = SERVER_MQTT_TOPIC_DL303
         print(SERVER_TOPIC)
-        mqtt_pub = mqtt.Client("CHT-IOT")
+        mqtt_pub = mqtt.Client("Wise-PaaS")
         mqtt_pub.username_pw_set(SERVER_USER_NAME, password=SERVER_USER_PWD)
         mqtt_pub.connect(SERVER_MQTT_SERVER, SERVER_MQTT_PORT)
         SERVER_PUB_COMMAND = '[{"id":"temp", "value":["' + str(message.payload.decode('utf-8'))  + '"], "time":"' + year + "-" + month + "-" + day + "T" + hour + ":" + minute + ":" + second + "." + micro_second + 'Z"}]'
@@ -375,11 +339,9 @@ def on_message(client, userdata, message):
         print("------------------------------------------------")
 
     if (message.topic == CLIENT_MQTT_TOPIC_ET7044):
-        SERVER_TOPIC = SERVER_MQTT_TOPIC_HEAD + SERVER_DEVICE_ID_ET7044 + SERVER_MQTT_TOPIC_END
-        SERVER_USER_NAME = SERVER_DEVICE_KEY_ET7044
-        SERVER_USER_PWD = SERVER_DEVICE_KEY_ET7044
+        SERVER_TOPIC = SERVER_MQTT_TOPIC_ET7044
         print(SERVER_TOPIC)
-        mqtt_pub = mqtt.Client("CHT-IOT")
+        mqtt_pub = mqtt.Client("CWise-PaaS")
         mqtt_pub.username_pw_set(SERVER_USER_NAME, password=SERVER_USER_PWD)
         mqtt_pub.connect(SERVER_MQTT_SERVER, SERVER_MQTT_PORT)
         sw = ["0", "0", "0", "0", "0", "0", "0", "0"]
@@ -404,7 +366,7 @@ def on_message(client, userdata, message):
 #       print(SERVER_PUB_COMMAND)
         mqtt_pub.publish(SERVER_TOPIC, SERVER_PUB_COMMAND)
         print("------------------------------------------------")
-        '''
+        
     print('MQTT To Server OK ! -->' , now)
     print('------------------------------------------------------')
     time.sleep(1)
@@ -414,13 +376,12 @@ mqtt_sub = mqtt.Client("NUTC-IMAC")
 mqtt_sub.on_message = on_message
 mqtt_sub.connect(CLIENT_MQTT_SERVER, CLIENT_MQTT_PORT)
 mqtt_sub.subscribe(CLIENT_MQTT_TOPIC_DL303_CO2)
-'''
+
 mqtt_sub.subscribe(CLIENT_MQTT_TOPIC_DL303_DC)
 mqtt_sub.subscribe(CLIENT_MQTT_TOPIC_DL303_RH)
 mqtt_sub.subscribe(CLIENT_MQTT_TOPIC_DL303_TC)
 mqtt_sub.subscribe(CLIENT_MQTT_TOPIC_ET7044)
 mqtt_sub.subscribe(CLIENT_MQTT_TOPIC_POWER_METER)
-'''
 mqtt_sub.subscribe(CLIENT_MQTT_TOPIC_UPS_MONITOR)
 mqtt_sub.subscribe(CLIENT_MQTT_TOPIC_AIR_CONDITION)
 mqtt_sub.subscribe(CLIENT_MQTT_TOPIC_UPS_ROUTE_A)
