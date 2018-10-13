@@ -108,4 +108,5 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 client.connect(CLIENT_MQTT_SERVER, CLIENT_MQTT_PORT)
+mqtt_sub.connect(CLIENT_MQTT_SERVER, CLIENT_MQTT_PORT)
 client.loop_forever()
